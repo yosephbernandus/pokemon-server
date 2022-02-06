@@ -31,5 +31,21 @@ module.exports = {
             code: "released",
             message: "Pokemon released"
         });
+    },
+
+    renamePokemon: async (req, res) => {
+        const { number } = req.body;
+
+        const fibonacci = (number) => {
+            if (number <= 1) return 1;
+            return fibonacci(number - 1) + fibonacci(number - 2);
+        }
+
+        no = fibonacci(number)
+        return res.status(200).json({
+            code: "renamed",
+            message: "Pokemon renamed",
+            no: no
+        })
     }
 }
