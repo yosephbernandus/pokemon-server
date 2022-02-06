@@ -1,3 +1,5 @@
+const { parse } = require("dotenv");
+
 module.exports = {
     catchPokemon: async (req, res) => {
 
@@ -34,18 +36,19 @@ module.exports = {
     },
 
     renamePokemon: async (req, res) => {
-        const { number } = req.body;
+        const { renamedCount, myPokemonName } = req.body;
 
-        const fibonacci = (number) => {
-            if (number <= 1) return 1;
-            return fibonacci(number - 1) + fibonacci(number - 2);
+        const fibonacci = (renamedCount) => {
+            if (renamedCount <= 1) return 1;
+            return fibonacci(renamedCount - 1) + fibonacci(renamedCount - 2);
         }
-
-        no = fibonacci(number)
+        fibonaciCount = fibonacci(parseInt(renamedCount));
         return res.status(200).json({
             code: "renamed",
             message: "Pokemon renamed",
-            no: no
+            pokemonName: `${myPokemonName}-${fibonaciCount}`,
+            fibonaciCount: fibonaciCount,
+            renamedCount: parseInt(renamedCount) + 1
         })
     }
 }
