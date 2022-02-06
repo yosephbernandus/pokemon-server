@@ -38,15 +38,18 @@ module.exports = {
     renamePokemon: async (req, res) => {
         const { renamedCount, myPokemonName } = req.body;
 
+        pokemonNameSplited = myPokemonName.split("-");
+
         const fibonacci = (renamedCount) => {
             if (renamedCount <= 1) return 1;
             return fibonacci(renamedCount - 1) + fibonacci(renamedCount - 2);
         }
         fibonaciCount = fibonacci(parseInt(renamedCount));
+        renamedCountToInt = parseInt(renamedCount);
         return res.status(200).json({
             code: "renamed",
             message: "Pokemon renamed",
-            pokemonName: `${myPokemonName}-${fibonaciCount}`,
+            pokemonName: `${pokemonNameSplited[0]}-${fibonaciCount}`,
             fibonaciCount: fibonaciCount,
             renamedCount: parseInt(renamedCount) + 1
         })
